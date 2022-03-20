@@ -16,46 +16,22 @@ main() {
 
 	count=0
 
-	case $# in
-	0)
+	# accept the right number of args
+	if [[ $# != 2 ]]; then
 		print_usage
-		;;
-	1)
-		print_usage
-		;;
-	2)
-		# check if both strands are of the same length
-		if [[ "${#dna_strand_1}" != "${#dna_strand_2}" ]]; then
-			wrong_length_msg
-		fi
+	fi
 
-		# check if one string is longer than the other
-		if [[ "${#dna_strand_1}" -gt "${#dna_strand_2}" || "${#dna_strand_1}" -lt "${#dna_strand_2}" ]]; then
-			wrong_length_msg
-		fi
+	# check if both strands are of the same length
+	if [[ "${#dna_strand_1}" != "${#dna_strand_2}" ]]; then
+		wrong_length_msg
+	fi
 
-		# if both strings are empty provide count
-		if [[ -z "${dna_strand_1}" && -z "${dna_strand_2}" ]]; then
-			echo $count
-			exit 0
+	# loop over the string and compare each char
+	for ((i = 0; i < ${#dna_strand_1}; i++)); do
+		if [[ "${dna_strand_1:$i:1}" != "${dna_strand_2:$i:1}" ]]; then
+			((count++))
 		fi
-
-		# check if one of the strings are empty
-		if [[ -z "${dna_strand_1}" || -z "${dna_strand_2}" ]]; then
-			wrong_length_msg
-		fi
-
-		# loop over the string and compare each char
-		for ((i = 0; i < ${#dna_strand_1}; i++)); do
-			if [[ "${dna_strand_1:$i:1}" != "${dna_strand_2:$i:1}" ]]; then
-				((count++))
-			fi
-		done
-		;;
-	*)
-		print_usage
-		;;
-	esac
+	done
 
 	echo $count
 }
