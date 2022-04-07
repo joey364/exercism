@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 main() {
-	local str
+	local str="$1"
 	local acronym=''
 
 	# format string to have only letters and spaces
-	str=$(sed 's/[_\*]//g; s/-/ /g' <<<"$1")
+	str=${str//-/ }
+	str=${str//[_\*]/}
 
 	for word in $str; do
 		acronym+=${word:0:1}
