@@ -13,11 +13,7 @@ main() {
 		temp=$(($temp / 10))
 	done
 
-	if [ $sum -eq $num ]; then
-		echo "true"
-	else
-		echo "false"
-	fi
+	[ $sum -eq $num ] && echo "true" || echo "false"
 }
 
 main "$@"
