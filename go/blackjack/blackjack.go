@@ -35,7 +35,7 @@ func ParseCard(card string) int {
 }
 
 // inRange returns true if the value is in the range [min, max].
-func inRange(value int, lowerBound int, upperBound int) bool {
+func inRange(value, lowerBound, upperBound int) bool {
 	return value >= lowerBound && value <= upperBound
 }
 
