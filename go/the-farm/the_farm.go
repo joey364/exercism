@@ -3,9 +3,6 @@ package thefarm
 import "errors"
 import "fmt"
 
-// See types.go for the types defined for this exercise.
-
-// TODO: Define the SillyNephewError type here.
 type SillyNephewError struct {
 	cows int
 }
