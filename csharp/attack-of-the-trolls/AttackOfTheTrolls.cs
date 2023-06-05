@@ -1,6 +1,5 @@
 using System;
 
-// TODO: define the 'AccountType' enum
 enum AccountType
 {
     Guest,
@@ -8,7 +7,6 @@ enum AccountType
     Moderator,
 }
 
-// TODO: define the 'Permission' enum
 [Flags]
 enum Permission : byte
 {
