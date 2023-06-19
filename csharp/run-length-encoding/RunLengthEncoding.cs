@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 public static class RunLengthEncoding
 {
@@ -6,12 +7,11 @@ public static class RunLengthEncoding
     {
         char currentChar, lookahead;
         int count = 1;
-        string encoded = "";
+        StringBuilder encoded = new();
 
         for (int i = 0; i < input.Length; i++)
         {
             currentChar = input[i];
-            // lookahead = input[i + 1];
             lookahead = i + 1 == input.Length ? '0' : input[i + 1];
             if (currentChar == lookahead)
             {
@@ -19,18 +19,19 @@ public static class RunLengthEncoding
             }
             else
             {
-                encoded += $"{(count > 1 ? count : "")}{currentChar}";
+                encoded.Append($"{(count > 1 ? count : "")}{currentChar}");
                 count = 1;
             }
 
         }
-        return encoded;
+        return encoded.ToString();
     }
 
     public static string Decode(string input)
     {
-        string repeat = "", decoded = "";
+        string repeat = "";
         char currentChar;
+        StringBuilder decoded = new();
 
         for (int i = 0; i < input.Length; i++)
         {
@@ -46,15 +47,15 @@ public static class RunLengthEncoding
             {
                 if (repeat == "")
                 {
-                    decoded += currentChar;
+                    decoded.Append(currentChar);
                 }
                 else
                 {
-                    decoded += $"{new string(currentChar, Int32.Parse(repeat))}";
+                    decoded.Append($"{new string(currentChar, Int32.Parse(repeat))}");
                     repeat = "";
                 }
             }
         }
-        return decoded;
+        return decoded.ToString();
     }
 }
