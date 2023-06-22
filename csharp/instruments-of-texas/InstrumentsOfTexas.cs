@@ -37,7 +37,7 @@ public class CalculatorTestHarness
         {
             return $"Multiply failed for negative operands. {cex.Inner.Message}";
         }
-        catch (CalculationException cex) 
+        catch (CalculationException cex)
         {
             return $"Multiply failed for mixed or positive operands. {cex.Inner.Message}";
         }
