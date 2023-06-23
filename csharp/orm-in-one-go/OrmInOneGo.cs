@@ -29,14 +29,11 @@ public class Orm
     {
         try
         {
-            database.BeginTransaction();
-            database.Write(data);
-            database.EndTransaction();
+            Write(data);
             return true;
         }
         catch (Exception)
         {
-          database.Dispose();
             return false;
         }
     }
